@@ -1,6 +1,7 @@
 {
   "name": "hltvorg-data-retrieval",
   "version": "1.0.0",
-  "dependencies": {"cheerio": "latest"
+  "dependencies": {
+    "cheerio": "latest"
   }
 }
