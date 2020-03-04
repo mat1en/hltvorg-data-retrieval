@@ -1,13 +1,21 @@
 const https = require('https');
 
+//refactor if needed
 class sendRequest {
-    getDataByRequest(dest, resolve) {
-        let dataSet = [];
-        https.get(dest, function (res) {
-            let html = '';
-            res.on('data', data => html += data).on('end', () => resolve(html, dataSet))
-        }).on('error', e => console.error(e.stack));
-        return dataSet;
+    getDataByRequest(dest) {
+        // let htmlData;
+        return new Promise((resolve, reject) => {
+            https.get(dest, function (res) {
+                let content = '';
+                res.on('data', data => content += data)
+                    .on('end', () => resolve(content))
+            }).on('error', e => reject(e.stack));
+        });
+    }
+
+    async getData(dest) {
+        let data = await this.getDataByRequest(dest);
+        console.log(data);
     }
 }
 
